@@ -21,7 +21,11 @@ export const frameworkSlice = createSlice({
   },
 });
 
-export const { addFrameworks, addFrameworksFulfilled, updateFramework } =
-  frameworkSlice.actions;
+export const {
+  addFrameworks,
+  addFrameworksFulfilled,
+  updateFramework,
+  shuffleCard,
+} = frameworkSlice.actions;
 
 export default frameworkSlice.reducer;

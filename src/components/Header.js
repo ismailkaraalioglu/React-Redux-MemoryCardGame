@@ -1,8 +1,14 @@
 // REDUX
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { resetScore } from "../redux/score/scoreSlice";
 
 function Header() {
   const score = useSelector((state) => state.score.points);
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(resetScore());
+  };
 
   return (
     <div className="header">
@@ -10,7 +16,7 @@ function Header() {
       <div className="score-group">
         <div>Your Score: {score}</div>
         <div>
-          <button>New Game</button>
+          <button onClick={handleClick}>Reset Score</button>
         </div>
       </div>
     </div>

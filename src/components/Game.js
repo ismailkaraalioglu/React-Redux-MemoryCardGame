@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+// SWAL
+import Swal from "sweetalert2";
+
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -12,7 +15,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import { scoreUp, scoreDown } from "../redux/score/scoreSlice";
 
 // FRAMEWORKS
-import { frameworks } from "../redux/frameworks/defaultFrameworks";
+import { frameworks, shuffleCard } from "../redux/frameworks/defaultFrameworks";
 
 function Game() {
   const [openCard, setOpenCard] = useState([]);
@@ -20,12 +23,28 @@ function Game() {
   const status = useSelector((status) => status.frameworks.status);
   const dispatch = useDispatch();
 
+  let completeFrameworks = items.filter((item) => item.complete);
+
+  if (completeFrameworks.length === 30) {
+    Swal.fire({
+      title: "Do you want to play again?",
+      showCancelButton: true,
+      confirmButtonText: "Restart",
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire("Loading!", "", "success");
+        window.location.reload();
+      }
+    });
+  }
+
   // SAYFA YÜKLENDİĞİNDE FRAMEWORK'LER YÜKLENECEK.
   useEffect(() => {
     if (status === "idle") {
       dispatch(
         addFrameworks(
-          frameworks.map((framework) => ({
+          shuffleCard(frameworks).map((framework) => ({
             id: nanoid(),
             name: framework,
             close: true,

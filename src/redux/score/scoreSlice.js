@@ -12,9 +12,12 @@ export const scoreSlice = createSlice({
     scoreDown: (state) => {
       state.points -= 10;
     },
+    resetScore: (state) => {
+      state.points = 0;
+    },
   },
 });
 
-export const { scoreUp, scoreDown } = scoreSlice.actions;
+export const { scoreUp, scoreDown, resetScore } = scoreSlice.actions;
 
 export default scoreSlice.reducer;

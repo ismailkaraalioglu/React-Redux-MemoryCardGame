@@ -119,7 +119,7 @@ function Game() {
               openCard.length < 2 && !item.complete && handleClick(item)
             }
           >
-            <div className="front">?</div>
+            <div className="front"></div>
             <div className="back">
               <img
                 src={`https://raw.githubusercontent.com/samiheikki/javascript-guessing-game/master/static/logos/${item.name}.png`}

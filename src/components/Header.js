@@ -15,9 +15,9 @@ function Header() {
     <div className="header">
       <h1>Memory Card Game</h1>
       <div className="score-group">
-        <div>Your Score: {score}</div>
+        <div className="score">Your Score: {score}</div>
         <div>
-          <button onClick={handleClick}>New Game</button>
+          <button className="btn" onClick={handleClick}>New Game</button>
         </div>
       </div>
     </div>

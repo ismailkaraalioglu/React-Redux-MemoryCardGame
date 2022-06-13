@@ -15,11 +15,15 @@ import { nanoid } from "@reduxjs/toolkit";
 import { scoreUp, scoreDown } from "../redux/score/scoreSlice";
 
 // FRAMEWORKS
-import { frameworks, shuffleCard } from "../redux/frameworks/defaultFrameworks";
+import {
+  shuffleCard,
+  duplicatedFrameworks,
+} from "../redux/frameworks/defaultFrameworks";
 
 function Game() {
   const [openCard, setOpenCard] = useState([]);
   const items = useSelector(frameworkSelector.selectAll);
+  const total = useSelector(frameworkSelector.selectTotal);
   const status = useSelector((status) => status.frameworks.status);
   const score = useSelector((status) => status.score.points);
   const dispatch = useDispatch();
@@ -45,7 +49,7 @@ function Game() {
     if (status === "idle") {
       dispatch(
         addFrameworks(
-          shuffleCard(frameworks).map((framework) => ({
+          shuffleCard(duplicatedFrameworks).map((framework) => ({
             id: nanoid(),
             name: framework,
             close: true,
@@ -105,6 +109,8 @@ function Game() {
       })
     );
   };
+
+  console.log(total);
 
   return (
     <div className="playground">

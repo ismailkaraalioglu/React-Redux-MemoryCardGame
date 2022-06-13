@@ -16,6 +16,8 @@ export const frameworks = [
   "browserify",
 ];
 
+export const duplicatedFrameworks = [...frameworks, ...frameworks]
+
 export const shuffleCard = (array) => {
   let currentIndex = array.length,
     randomIndex;

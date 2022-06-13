@@ -8,6 +8,7 @@ function Header() {
 
   const handleClick = () => {
     dispatch(resetScore());
+    window.location.reload();
   };
 
   return (
@@ -16,7 +17,7 @@ function Header() {
       <div className="score-group">
         <div>Your Score: {score}</div>
         <div>
-          <button onClick={handleClick}>Reset Score</button>
+          <button onClick={handleClick}>New Game</button>
         </div>
       </div>
     </div>

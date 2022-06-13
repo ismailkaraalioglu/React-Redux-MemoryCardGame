@@ -21,17 +21,18 @@ function Game() {
   const [openCard, setOpenCard] = useState([]);
   const items = useSelector(frameworkSelector.selectAll);
   const status = useSelector((status) => status.frameworks.status);
+  const score = useSelector((status) => status.score.points);
   const dispatch = useDispatch();
+  console.log(score);
 
   let completeFrameworks = items.filter((item) => item.complete);
 
   if (completeFrameworks.length === 30) {
     Swal.fire({
-      title: "Do you want to play again?",
+      title: `Your Score: ${score} \n Do you want to play again?`,
       showCancelButton: true,
       confirmButtonText: "Restart",
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Swal.fire("Loading!", "", "success");
         window.location.reload();
